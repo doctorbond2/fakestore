@@ -3,17 +3,17 @@ class Cart {
     this.cart = [];
   }
 
-  storage(storage) {
+  storage() {
     
-    if(this.cart === []) {
-      console.log('no items in cart');
+    if(this.cart.length === 0) {
+      console.log('No items in cart');
     } else {
       console.log(this.cart);
     }
   }
 
-  addToCart(x) {
-    this.cart.push(x);
+  addToCart(item) {
+    this.cart.push(item);
   }
   updateCart() {
 
@@ -28,3 +28,7 @@ class Cart {
 
   }
 }
+
+
+
+export default Cart;

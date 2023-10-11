@@ -1,8 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
+
 html {
   min-height: 100%;
   min-width: 100%;
@@ -14,7 +11,11 @@ body {
   min-height: 100%;
   min-width: 100%;
   background-color: green;
+  margin: 0;
+  padding: 0;
 }
+
+
 
 header {
   z-index: 10;
@@ -25,3 +26,14 @@ footer {
   height: 8%;
 }
 
+#products-box {
+  margin-top: 27%;
+  height: 50%;
+  width: 100%;
+  border: 2px solid black;
+}
+.product-item {
+  width: 200px;
+  height: 200px;
+  background-color: beige;
+}
