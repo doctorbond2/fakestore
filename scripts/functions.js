@@ -21,14 +21,17 @@ function renderFunc(condition) {
   let product_list = '';
   if(condition === false) {
     for(let i = 0; i < 8; i++) {
+
       const product = document.createElement('article');
-      product.classList.add('product-item', 'card-body');
-      product.classList.add('col-6');
-      product.innerHTML = `<div class="product-item card">
-      <h2>Title</h2>
-      <h4>main desc?</h4>
-      <p>Blabla</p>
-      </div>`;
+
+      product.classList.add('card-body','product-box');
+      product.classList.add('col');
+      product.innerHTML = `
+        <div class="product-item card">
+          <h2>Title</h2>
+          <h4>main desc?</h4>
+          <p>Blabla</p>
+        </div>`;
       products_box.appendChild(product);
       
       for(let i = 0; i < 5; i++) {

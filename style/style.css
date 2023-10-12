@@ -21,13 +21,18 @@ header {
 footer {
   z-index: 10;
   height: 8%;
+  background-color: green;
 }
 
 #products-box {
-  width: 100%;
+  width: 80%;
   border: 2px solid black;
 }
 
 .product-item {
   background-color: beige;
+}
+
+.product-box {
+  background-color: lightblue;
 }/*# sourceMappingURL=style.css.map */
