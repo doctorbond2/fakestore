@@ -24,14 +24,10 @@ footer {
 }
 
 #products-box {
-  margin-top: 27%;
-  height: 50%;
   width: 100%;
   border: 2px solid black;
 }
 
 .product-item {
-  width: 200px;
-  height: 200px;
   background-color: beige;
 }/*# sourceMappingURL=style.css.map */

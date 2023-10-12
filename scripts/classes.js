@@ -16,12 +16,17 @@ class Cart {
     this.cart.push(item);
   }
   updateCart() {
-
+    
   }
   
   removeCart(amount) {
     const x = this.cart;
     this.cart.splice(x.length-1,1);
+  }
+
+  cartQuantity() {
+    console.log(this.cart);
+    return this.cart;
   }
 
   sortCart() {
