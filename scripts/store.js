@@ -1,7 +1,5 @@
 import Cart from './classes.js';
 
-
-
 const customer_1 = new Cart();
 const allProducts = await fetchProducts('https://fakestoreapi.com/products');
 

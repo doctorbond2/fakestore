@@ -42,32 +42,62 @@ async function renderFunc(condition) {
     const contentData = await fetchProducts('https://fakestoreapi.com/products');
     console.log(contentData);
 
+
+
     contentData.forEach((value, index) => {
 
       const catForId = value.category.substring(0, 3);
 
-      const product = document.createElement('article');
+      const modal = document.createElement('dialog');
+      modal.classList.add('card', 'modal-box');
+      modal.style = 'display: none;'
+      modal.setAttribute('data-modal', 'myModal');
+      modal.id = `modal-${catForId + (index + 1)}`
+  
+      document.body.appendChild(modal);
+  
+      modal.innerHTML += `
 
-      console.log(value.description);
-
-      product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
-      product.classList.add(`col`);
-      product.classList.add(`js-${catForId}`);
-      product.style = "width 18rem; height: 25rem; max-width: 18rem;";
-      product.id = `${catForId + (index + 1)}`
-      product.innerHTML += `
       <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
       <div class="card-body">
         <h5 class="card-title">${value.title}</h5>
-        <h6 class="card-text"><a onclick="
-        
+        <h6 class="card-text"><a class="modal-click" onclick="
+        console.log('check');
         ">Details</a></h6>
         <div class="input-button-encase">
         <input class="input-for-numbers" type="number">
         <button 
         class="btn btn-primary cartbutton" 
         onclick="
+        console.log('test')
+        "
+        >Add to cart
+        </button>´
+        </div>
+      </div>`;
 
+
+
+      const product = document.createElement('article');
+
+      product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
+      product.classList.add(`col`);
+      product.classList.add(`js-${catForId}`);
+      product.style = "width 18rem; height: 25rem; max-width: 18rem;";
+      product.id = `${catForId + (index + 1)}`;
+      product.innerHTML += `
+      <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
+      
+      <div class="card-body">
+        <h5 class="card-title">${value.title}</h5>
+        <h6 class="card-text"><a class="modal-click" onclick="
+        console.log('check');
+        ">Details</a></h6>
+        <div class="input-button-encase">
+        <input class="input-for-numbers" type="number">
+        <button 
+        class="btn btn-primary cartbutton" 
+        onclick="
         console.log('test')
         "
         >Add to cart
@@ -78,9 +108,12 @@ async function renderFunc(condition) {
       products_box.appendChild(product);
     });
 
- 
 
   }
+}
+
+function showModal(modal) {
+
 }
 
 

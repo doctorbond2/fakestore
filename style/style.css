@@ -64,6 +64,11 @@ footer {
   margin-top: 5%;
 }
 
-.cartbutton {
-  height: 30px;
+.modal-box {
+  width: 20rem;
+  height: 20rem;
+}
+
+.modal-click {
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
