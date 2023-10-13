@@ -9,21 +9,21 @@ async function fetchProducts(url) {
     return translate;
   }
   catch (error) {
-    return console.error(error,'Server did not respond');
+    return console.error(error, 'Server did not respond');
   }
 }
 
 
 async function renderFunc(condition) {
 
-  
-  const products_box = document.getElementById('products-box');
+
+  const products_box = document.getElementById('products-main-box');
 
   let product_list = '';
-  if(condition === false) {
-    for(let i = 0; i < 9; i++) {
+  if (condition === false) {
+    for (let i = 0; i < 9; i++) {
 
-      product.classList.add('card-body','product-box', 'col-12', 'col-md-6', 'col-lg-4');
+      product.classList.add('card-body', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
       product.classList.add('col');
       product.innerHTML = `
         <div class="product-item card">
@@ -32,57 +32,79 @@ async function renderFunc(condition) {
           <p>Blabla</p>
         </div>`;
       products_box.appendChild(product);
-      
-     
+
+
     }
   }
 
-  if (condition === true ) {
+  if (condition === true) {
 
     const contentData = await fetchProducts('https://fakestoreapi.com/products');
     console.log(contentData);
-    
-    contentData.forEach((value,index) => {
+
+    contentData.forEach((value, index) => {
+
+      const catForId = value.category.substring(0, 3);
+
       const product = document.createElement('article');
+
       console.log(value.description);
-      product.classList.add('card','product-box', 'col-12', 'col-md-6', 'col-lg-4');
-      product.classList.add('col');
-      product.style = "width 18rem; height: 25rem";
+
+      product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
+      product.classList.add(`col`);
+      product.classList.add(`js-${catForId}`);
+      product.style = "width 18rem; height: 25rem; max-width: 18rem;";
+      product.id = `${catForId + (index + 1)}`
       product.innerHTML += `
-      <img class="card-img-top w-75" src="${value.image}" alt="Card image cap" style="height: 10rem;">
+      <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
       <div class="card-body">
         <h5 class="card-title">${value.title}</h5>
-        <p class="card-text">desc</p>
-        <button href="#" class="btn btn-primary">Add to cart</button>
+        <h6 class="card-text"><a onclick="
+        
+        ">Details</a></h6>
+        <div class="input-button-encase">
+        <input class="input-for-numbers" type="number">
+        <button 
+        class="btn btn-primary cartbutton" 
+        onclick="
+
+        console.log('test')
+        "
+        >Add to cart
+        </button>´
+        </div>
       </div>`;
+      console.log(product);
       products_box.appendChild(product);
     });
-     
+
+ 
 
   }
 }
 
 
-function productsSorter(data,number) {
+function productsSorter(data, number) {
 
   if (number < 0 || undefined) {
     return console.log('Give a number please:');
   } else {
-    
-  const categories = [];
-  
-  data.forEach((value,index) => {
-    if (!categories.includes(value.category)) {
-      categories.push(value.category);
-      console.log(categories);
-    }
-  });
-  return categories[number-1];
+
+    const categories = [];
+
+    data.forEach((value, index) => {
+      if (!categories.includes(value.category)) {
+        categories.push(value.category);
+        console.log(categories);
+      }
+    });
+    return categories[number - 1];
   }
 }
 
-function preciseSort(data,c) {
-  return data.filter((value,index) => {
+function preciseSort(data, c) {
+  console.log('hey');
+  return data.filter((value, index) => {
     return value.category === `${c}`;
   });
 }
@@ -92,10 +114,10 @@ function logIn(name, age) {
 }
 
 function cartFunc() {
-  
+
 }
 
-export {fetchProducts, renderFunc, productsSorter, preciseSort};
+export { fetchProducts, renderFunc, productsSorter, preciseSort };
 
 
 

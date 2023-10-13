@@ -24,20 +24,26 @@
 <body>
   <div class="container-fluid h-100 w-100">
     <header id="part-1" class="row">
-      <div class="col">header</div>
+      <div class="col">header
+        <nav class="navbar navbar-collapse mr-auto">
+          <ul>List?</ul>
+        </nav>
+      </div>
     </header>
-    <main class="row h-100 g-0">
+    <main class="row h-100">
       <section id="part-2" class="col">
         <div id="image-and-products" class="container h-100">
-          <img class="front-image-s" src="/misc/turbo.jpg">image</img>
-          <div class="container-md">
-            <div id="products-box" class="row container-md">
+          <img class="front-image-s d-md-block d-none" alt="background-image-of-fakestore-front" src="/misc/turbo.jpg"></img>
+          <div class="container-md w-100">
+            <div>search<input></div>
+            <div id="products-main-box" class="row container-md w-100">
               <!-- js generated divs -->
             </div>
           </div>
         </div>
       </section>
       <section id="part-3" class="col-2 d-none d-md-block">Sidebar
+        <input><button>Login</button>
         <div class="cart-box">Cart()</div>
       </section>
     </main>
