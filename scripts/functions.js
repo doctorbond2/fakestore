@@ -3,6 +3,7 @@ import Cart from './classes.js';
 
 
 async function fetchProducts(url) {
+
   try {
     const response = await fetch(url);
     const translate = await response.json();
@@ -14,12 +15,10 @@ async function fetchProducts(url) {
 }
 
 
-async function renderFunc(condition) {
+async function renderFunc(condition, products) {
 
 
   const products_box = document.getElementById('products-main-box');
-
-  let product_list = '';
 
   if (condition === false) {
     for (let i = 0; i < 9; i++) {
@@ -39,90 +38,50 @@ async function renderFunc(condition) {
   if (condition === true) {
 
     const contentData = await fetchProducts('https://fakestoreapi.com/products');
+
     console.log(contentData);
 
     contentData.forEach((value, index) => {
 
       const catForId = value.category.substring(0, 3);
 
-      const modal = document.createElement('dialog');
-      modal.classList.add('card', 'modal-box', 'modal');
-      modal.style = 'display: none;'
-      modal.setAttribute('data-modal', 'myModal');
-      modal.id = `modal-${catForId + (index + 1)}`
-  
-      document.body.appendChild(modal);
-  
-      modal.innerHTML += `
-      <button class="close-button">X</button>
-      <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
-      <div class="card-body">
-      
-        <h5 class="card-title">${value.title}</h5>
-
-        <div class="input-button-encase">
-        <input class="input-for-numbers" type="number">
-        <button 
-        class="btn btn-primary cartbutton" 
-        onclick="
-        console.log('test')
-        "
-        >Add to cart
-        </button>´
-        </div>
-      </div>`;
-
-
-
       const product = document.createElement('article');
 
       product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
       product.classList.add(`col`);
       product.classList.add(`js-${catForId}`);
+
       product.style = "width 18rem; height: 25rem; max-width: 18rem;";
-      product.id = `${catForId + (index + 1)}`;
+      product.id = value.id;
+      // product.id = `${catForId + (index + 1)}`;
       product.innerHTML += `
-      <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
+
+      <img class="card-img-top" src="${value.image}" alt="Card image cap" style="height: 10rem; width: 10rem;">
       
       <div class="card-body">
         <h5 class="card-title">${value.title}</h5>
         <h6 class="card-text">
-        <a class="modal-click" data-target="#${modal.id}" onclick="
-        const mode = document.querySelector('#${modal.id}');
-        mode.style.display = 'block';
-        console.log('check');
-        ">Details</a></h6>
-        <div class="input-button-encase">
-        <input class="input-for-numbers" type="number">
-        <button 
-        class="btn btn-primary cartbutton"
-        >Add to cart
+        <button type="button" class="btn btn-primary js-modal-button-${index+1}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          GO
         </button>
-        </div>
+        <a>Details</a></h6>
       </div>`;
+
       console.log(product);
-      products_box.appendChild(product);
 
-      
-
-    });
-
-    const modalList = document.querySelectorAll('.modal-box');
+      // const myModal = document.getElementById('myModal')
+      // const myInput = document.getElementById('myInput')
     
-    console.log(modalList);
+      // myModal.addEventListener('shown.bs.modal', () => {
+      // myInput.focus()
+      // });
 
-    modalList.forEach((value,index) => {
-      const closeButton = value.querySelector('.close-button');
-      closeButton.id = `close${index+1}`;
-      console.log(closeButton);
-      closeButton.addEventListener('click',() => {
-      console.log('ok');
-      value.style.display = 'none';
-      });
-    })
+      products_box.appendChild(product);
+    });
   }
-
 }
+
+
 
 
 
@@ -151,15 +110,44 @@ function preciseSort(data, c) {
   });
 }
 
-function logIn(name, age) {
+function eventListeners() {
+  
+  const allButtons = document.querySelectorAll('.js-modal-button');
+  console.log(allButtons);
+  allButtons.forEach((value,index) => {
+    const button = document.querySelector('.js-modal-button');
+    button.addEventListener('click',() => {
+      console.log('hello');
+    });
+  });
 
 }
 
-function cartFunc() {
+async function returnProduct(ID) {
 
+  const product = await fetchProducts(`https://fakestoreapi.com/products/${ID}`);
+  console.log(product);
+  const modalHTML = document.querySelector('.js-modal-body');
+  modalHTML.innerHTML = `
+  <img class="card-img-top" src="${product.image}" alt="Card image cap" style="height: 10rem; width: 10rem;">
+  <h3>${product.title}</h3>
+  <p> ${product.description}</p>
+  `;
+
+  console.log(modalHTML);
 }
 
-export { fetchProducts, renderFunc, productsSorter, preciseSort };
+async function getProducts(url) {
+  const productArray = await fetchProducts(url);
+  const idArray = [];
+  productArray.forEach((value,index) => {
+    idArray.push(value.id);
+  });
+  console.log(idArray);
+  return idArray;
+}
+
+export { fetchProducts, renderFunc, productsSorter, preciseSort, returnProduct, eventListeners, getProducts };
 
 
 

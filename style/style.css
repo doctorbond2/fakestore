@@ -77,4 +77,8 @@ footer {
   position: absolute;
   right: 0;
   border: none;
+}
+
+.modal-body {
+  height: 20rem;
 }/*# sourceMappingURL=style.css.map */
