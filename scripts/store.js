@@ -7,12 +7,10 @@ const allProducts = await fetchProducts('https://fakestoreapi.com/products');
 console.log(allProducts);
 
 
-import {fetchProducts, productsSorter, renderFunc} from './functions.js';
-renderFunc(false);
-const new2 = productsSorter(allProducts,1);
+import {fetchProducts, productsSorter, renderFunc, preciseSort} from './functions.js';
+renderFunc(true);
 
-console.log(new2);
-
+preciseSort(allProducts,"men's clothing");
 
 
 
