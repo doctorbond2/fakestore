@@ -97,7 +97,7 @@ async function renderFunc(condition) {
         <button 
         class="btn btn-primary cartbutton"
         >Add to cart
-        </button>´
+        </button>
         </div>
       </div>`;
       console.log(product);
@@ -108,10 +108,10 @@ async function renderFunc(condition) {
     });
 
     const modalList = document.querySelectorAll('.modal-box');
-
+    
     console.log(modalList);
 
-      modalList.forEach((value,index) => {
+    modalList.forEach((value,index) => {
       const closeButton = value.querySelector('.close-button');
       closeButton.id = `close${index+1}`;
       console.log(closeButton);
