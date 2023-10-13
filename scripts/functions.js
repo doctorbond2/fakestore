@@ -20,6 +20,7 @@ async function renderFunc(condition) {
   const products_box = document.getElementById('products-main-box');
 
   let product_list = '';
+
   if (condition === false) {
     for (let i = 0; i < 9; i++) {
 
@@ -32,8 +33,6 @@ async function renderFunc(condition) {
           <p>Blabla</p>
         </div>`;
       products_box.appendChild(product);
-
-
     }
   }
 
@@ -42,14 +41,12 @@ async function renderFunc(condition) {
     const contentData = await fetchProducts('https://fakestoreapi.com/products');
     console.log(contentData);
 
-
-
     contentData.forEach((value, index) => {
 
       const catForId = value.category.substring(0, 3);
 
       const modal = document.createElement('dialog');
-      modal.classList.add('card', 'modal-box');
+      modal.classList.add('card', 'modal-box', 'modal');
       modal.style = 'display: none;'
       modal.setAttribute('data-modal', 'myModal');
       modal.id = `modal-${catForId + (index + 1)}`
@@ -57,13 +54,12 @@ async function renderFunc(condition) {
       document.body.appendChild(modal);
   
       modal.innerHTML += `
-
+      <button class="close-button">X</button>
       <img class="card-img-top w-50" src="${value.image}" alt="Card image cap" style="height: 8rem;">
       <div class="card-body">
+      
         <h5 class="card-title">${value.title}</h5>
-        <h6 class="card-text"><a class="modal-click" onclick="
-        console.log('check');
-        ">Details</a></h6>
+
         <div class="input-button-encase">
         <input class="input-for-numbers" type="number">
         <button 
@@ -90,31 +86,44 @@ async function renderFunc(condition) {
       
       <div class="card-body">
         <h5 class="card-title">${value.title}</h5>
-        <h6 class="card-text"><a class="modal-click" onclick="
+        <h6 class="card-text">
+        <a class="modal-click" data-target="#${modal.id}" onclick="
+        const mode = document.querySelector('#${modal.id}');
+        mode.style.display = 'block';
         console.log('check');
         ">Details</a></h6>
         <div class="input-button-encase">
         <input class="input-for-numbers" type="number">
         <button 
-        class="btn btn-primary cartbutton" 
-        onclick="
-        console.log('test')
-        "
+        class="btn btn-primary cartbutton"
         >Add to cart
         </button>´
         </div>
       </div>`;
       console.log(product);
       products_box.appendChild(product);
+
+      
+
     });
 
+    const modalList = document.querySelectorAll('.modal-box');
 
+    console.log(modalList);
+
+      modalList.forEach((value,index) => {
+      const closeButton = value.querySelector('.close-button');
+      closeButton.id = `close${index+1}`;
+      console.log(closeButton);
+      closeButton.addEventListener('click',() => {
+      console.log('ok');
+      value.style.display = 'none';
+      });
+    })
   }
-}
-
-function showModal(modal) {
 
 }
+
 
 
 function productsSorter(data, number) {

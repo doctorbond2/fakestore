@@ -71,9 +71,16 @@ footer {
 
 .modal-box {
   width: 20rem;
-  height: 20rem;
+  height: 25rem;
 }
 
 .modal-click {
   cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  border: none;
+  
 }

@@ -11,8 +11,6 @@ import {fetchProducts, productsSorter, renderFunc, preciseSort} from './function
 await renderFunc(true);
 
 
-preciseSort(allProducts,"men's clothing");
-
 
 
 
