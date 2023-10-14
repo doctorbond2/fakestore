@@ -60,7 +60,7 @@ footer {
 }
 
 .card-img-top {
-  margin-left: 30%;
+  margin-left: 10%;
   margin-top: 5%;
 }
 
@@ -79,6 +79,69 @@ footer {
   border: none;
 }
 
+.modal-header {
+  border-bottom: none;
+}
+
 .modal-body {
-  height: 20rem;
+  height: 30rem;
+  max-width: 30rem;
+}
+
+.modal-footer {
+  border: none;
+}
+
+.add-to-cart-button {
+  margin-right: 50%;
+}
+
+.modal-content {
+  padding: 0.3em;
+  height: 40rem;
+  width: 30rem;
+}
+
+.cart-image {
+  width: 2.4rem;
+  height: 2.4rem;
+  background-image: url("/images/3081986.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.js-modal-button {
+  cursor: pointer;
+}
+
+.card-title {
+  font-size: 1rem;
+}
+
+.item-category-text {
+  opacity: 50%;
+}
+
+.cart-icon-and-title {
+  display: flex;
+}
+
+.category-bar {
+  display: flex;
+}
+.category-bar ul {
+  display: inherit;
+}
+
+.card-product-box {
+  position: relative;
+}
+
+.info-box {
+  position: absolute;
+  bottom: 0;
+}
+
+.ratings-text {
+  font-size: 1rem;
 }/*# sourceMappingURL=style.css.map */

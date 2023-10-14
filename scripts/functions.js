@@ -1,7 +1,13 @@
 import Cart from './classes.js';
 
+function categoryList(products) {
+  const select = document.querySelector('.category-select');
 
+  products.forEach((value,index) => {
 
+  });
+}
+ 
 async function fetchProducts(url) {
 
   try {
@@ -15,84 +21,50 @@ async function fetchProducts(url) {
 }
 
 
-async function renderFunc(condition, products) {
+function renderHTML(products) {
 
 
   const products_box = document.getElementById('products-main-box');
 
-  if (condition === false) {
-    for (let i = 0; i < 9; i++) {
+  products.forEach((value, index) => {
 
-      product.classList.add('card-body', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
-      product.classList.add('col');
-      product.innerHTML = `
-        <div class="product-item card">
-          <h2>Title</h2>
-          <h4>main desc?</h4>
-          <p>Blabla</p>
-        </div>`;
-      products_box.appendChild(product);
-    }
-  }
+    const catForId = value.category.substring(0, 3);
 
-  if (condition === true) {
+    const product = document.createElement('article');
 
-    const contentData = await fetchProducts('https://fakestoreapi.com/products');
+    product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4', `js-${catForId}`, 'col');
 
-    console.log(contentData);
+    product.style = "width 18rem; height: 25rem; max-width: 18rem;";
+    product.id = value.id;
 
-    contentData.forEach((value, index) => {
-
-      const catForId = value.category.substring(0, 3);
-
-      const product = document.createElement('article');
-
-      product.classList.add('card', 'product-box', 'col-12', 'col-md-6', 'col-lg-4');
-      product.classList.add(`col`);
-      product.classList.add(`js-${catForId}`);
-
-      product.style = "width 18rem; height: 25rem; max-width: 18rem;";
-      product.id = value.id;
-      // product.id = `${catForId + (index + 1)}`;
-      product.innerHTML += `
+    product.innerHTML += `
 
       <img class="card-img-top" src="${value.image}" alt="Card image cap" style="height: 10rem; width: 10rem;">
       
       <div class="card-body">
-        <h5 class="card-title">${value.title}</h5>
-        <h6 class="card-text">
-        <button type="button" class="btn btn-primary js-modal-button-${index+1}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          GO
-        </button>
-        <a>Details</a></h6>
+        <h3 class="card-title">${value.title}</h3>
+
+        <div class="info-box">
+        <h3>$${value.price}</h3>
+        <h4 class="ratings-text">Rating: ${value.rating.rate}(${value.rating.count})</h4>
+        
+        <h6 class="card-text"><a class=" js-modal-button js-modal-button-${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal"">Details</a></h6>
+   
+        <h6 class="item-category-text">${value.category}</h6>
+        </div>
       </div>`;
 
-      console.log(product);
+    products_box.appendChild(product);
+  });
 
-      // const myModal = document.getElementById('myModal')
-      // const myInput = document.getElementById('myInput')
-    
-      // myModal.addEventListener('shown.bs.modal', () => {
-      // myInput.focus()
-      // });
-
-      products_box.appendChild(product);
-    });
-  }
 }
 
 
-
-
-
 function productsSorter(data, number) {
-
   if (number < 0 || undefined) {
     return console.log('Give a number please:');
   } else {
-
     const categories = [];
-
     data.forEach((value, index) => {
       if (!categories.includes(value.category)) {
         categories.push(value.category);
@@ -106,19 +78,23 @@ function productsSorter(data, number) {
 function preciseSort(data, c) {
   console.log('hey');
   return data.filter((value, index) => {
+    console.log(value.category);
     return value.category === `${c}`;
   });
 }
 
-function eventListeners() {
-  
-  const allButtons = document.querySelectorAll('.js-modal-button');
-  console.log(allButtons);
-  allButtons.forEach((value,index) => {
-    const button = document.querySelector('.js-modal-button');
-    button.addEventListener('click',() => {
-      console.log('hello');
+function eventListeners(products) {
+  console.log(products);
+  products.forEach((value, index) => {
+    const newButton = document.querySelector(`.js-modal-button-${value.id}`);
+    newButton.addEventListener('click', () => {
+      returnProduct(value.id);
     });
+  });
+
+  const cartButton = document.querySelector('.add-to-cart-button');
+  cartButton.addEventListener('click',() => {
+    
   });
 
 }
@@ -126,12 +102,13 @@ function eventListeners() {
 async function returnProduct(ID) {
 
   const product = await fetchProducts(`https://fakestoreapi.com/products/${ID}`);
-  console.log(product);
   const modalHTML = document.querySelector('.js-modal-body');
+  console.log(product);
   modalHTML.innerHTML = `
   <img class="card-img-top" src="${product.image}" alt="Card image cap" style="height: 10rem; width: 10rem;">
   <h3>${product.title}</h3>
   <p> ${product.description}</p>
+  <h4 class="ratings-text">Rating: ${product.rating.rate}(${product.rating.count})</h4>
   `;
 
   console.log(modalHTML);
@@ -140,19 +117,24 @@ async function returnProduct(ID) {
 async function getProducts(url) {
   const productArray = await fetchProducts(url);
   const idArray = [];
-  productArray.forEach((value,index) => {
+  productArray.forEach((value, index) => {
     idArray.push(value.id);
   });
   console.log(idArray);
   return idArray;
 }
 
-export { fetchProducts, renderFunc, productsSorter, preciseSort, returnProduct, eventListeners, getProducts };
+export {
+  fetchProducts,
+  renderHTML,
+  productsSorter,
+  preciseSort,
+  returnProduct,
+  eventListeners,
+  getProducts
+};
 
 
-
-{/* <div class="product-item card">
-          <h2>${value.title}</h2>
-          <h4>${value.description}</h4>
-          <p>Blabla</p>
-        </div> */}
+{/* <button type="button" class="btn btn-primary js-modal-button-${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+GO
+</button> */}
