@@ -52,9 +52,12 @@
         <div id="image-and-products" class="container h-100">
           <img class="front-image-s d-md-block d-none" alt="background-image-of-fakestore-front" src="/misc/turbo.jpg"></img>
           <div class="container-md w-100">
-            <nav class="category-bar">Sort<select class="category-select">
-              <option>Men's clothing</option>
+            <nav class="category-bar">Sort
+              <select class="category-select">
+                <!-- <option class="empty-option">All products</option> -->
+              
             </select>
+            <button class="clear-button">Clear</button>
             </nav>
             <div id="products-main-box" class="row container-md w-100">
               <!-- js generated divs -->
@@ -66,10 +69,9 @@
         <input><button>Login</button>
         <div class="cart-icon-and-title">
           <div class="cart-image"></div>
-          <h4 class="cart-title-text">Go to cart</h4>
+          <h4 class="cart-title-text">Cart</h4>
 
         </div>
-        
         <div class="cart-box">
 
           
@@ -81,7 +83,7 @@
     <div class="col-12">footer</div>
   </footer>
 
-  <script src="/scripts/classes.js" type="module"></script>
+  <script src="/scripts/components/cart.js" type="module"></script>
   <script src="/scripts/functions.js" type="module"></script>
   <script src="/scripts/store.js" type="module"></script>
   <script>
@@ -91,7 +93,7 @@
   
     myModal.addEventListener('shown.bs.modal', () => {
     myInput.focus()
-  })
+  });
 
   </script>
 </body>

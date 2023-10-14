@@ -92,6 +92,15 @@ footer {
   border: none;
 }
 
+.cart-product-image {
+  height: 5rem;
+  width: 5rem;
+}
+
+.cart-content {
+  border: 1px solid black;
+}
+
 .add-to-cart-button {
   margin-right: 50%;
 }
