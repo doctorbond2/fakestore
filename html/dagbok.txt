@@ -1,0 +1,6 @@
+14:e
+
+Se över ifall det är möjligt att tillsätta eventlisteners efter att allt har renderat genom att gå igenom renderade element.
+
+queryselectAll kan funka. exempelvis.
+Fixa också visuellt header och sidebar så att det inte ser ut som somalias regeringssida.

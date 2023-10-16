@@ -66,7 +66,7 @@ footer {
 
 .modal-box {
   width: 40rem;
-  height: 30rem;
+  height: 33rem;
 }
 
 .modal-click {
@@ -87,8 +87,12 @@ footer {
   height: 30rem;
   max-width: 30rem;
 }
+.modal-body p {
+  font-size: 0.9em;
+}
 
 .modal-footer {
+  height: 10%;
   border: none;
 }
 
@@ -102,12 +106,13 @@ footer {
 }
 
 .add-to-cart-button {
-  margin-right: 50%;
+  margin-right: 75%;
+  margin-bottom: 20%;
 }
 
 .modal-content {
   padding: 0.3em;
-  height: 40rem;
+  height: 45rem;
   width: 30rem;
 }
 
@@ -153,4 +158,8 @@ footer {
 
 .ratings-text {
   font-size: 1rem;
+}
+
+.price-title {
+  font-size: 1.2em;
 }/*# sourceMappingURL=style.css.map */
