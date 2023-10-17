@@ -3,10 +3,8 @@ import Products from './components/products.js';
 const cart_1 = new Cart();
 const products_1 = new Products(cart_1.cart);
 import {
-  fetchProducts,
-  productsSorter,
-  preciseSort,
-} from './functions.js';
+  loginEL
+} from './components/event-handlers.js';
 
 
 const products = await products_1.fetchProducts('https://fakestoreapi.com/products');
@@ -16,16 +14,21 @@ console.log(cart);
 console.log(products);
 
 products_1.renderHTML(products);
+loginEL();
 products_1.getCategoriesForDropdown();
 products_1.renderCategoryOptions();
 cart_1.renderCart();
-eventListeners(products);
+cart_1.checkoutEL();
+products_1.sortBy(products);
+products_1.sortEventListener();
+products_1.resetButtonEventListener();
+// eventListeners(products);
 
 
 
 
-
-function eventListeners(products) {
+// Kanske använder senare
+// function eventListeners(products) {
 
   // products.forEach((value, index) => {
   //   const newButton = document.querySelector(`.js-modal-button-${value.id}`);
@@ -34,11 +37,11 @@ function eventListeners(products) {
   //   });
   // });
 
-  const clearButton = document.querySelector('.clear-button');
-  clearButton.addEventListener('click', () => {
-    products_1.renderHTML(products);
-  });
-}
+  // const clearButton = document.querySelector('.clear-button');
+  // clearButton.addEventListener('click', () => {
+  //   products_1.renderHTML(products);
+  // });
+// }
 
 
 
