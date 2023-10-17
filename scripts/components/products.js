@@ -13,7 +13,6 @@ class Products extends Cart {
   }
 
   renderCategoryOptions() {
-
     const dropDownMeny = document.querySelector('.category-select');
     const dropDownCategories = this.categories;
     const emptyOption = document.createElement('option');
@@ -23,9 +22,7 @@ class Products extends Cart {
 
     dropDownCategories.forEach((value, index) => {
       const option = document.createElement('option');
-      option.setAttribute('value',`cSelect${index+1}`)
       option.innerText = value;
-
       dropDownMeny.appendChild(option);
     });
 
@@ -37,7 +34,6 @@ class Products extends Cart {
   }
 
   getCategoriesForDropdown() {
-
     this.products.forEach((x) => {
       if (!this.categories.includes(x.category)) {
         this.categories.push(x.category);
@@ -46,9 +42,7 @@ class Products extends Cart {
   }
 
   sortBy(sortingFrom, products) {
-
     let productsSortBy = products;
-
     if (sortingFrom === 'Highest rating') {
       productsSortBy.sort((rating1, rating2) => {
         let x = rating1.rating.rate;
@@ -119,18 +113,13 @@ class Products extends Cart {
       product.id = value.id;
 
       product.innerHTML += `
-
       <img class="card-img-top" src="${value.image}" alt="Card image cap" style="height: 10rem; width: 10rem;">
-      
       <div class="card-body" style="border-top: 1px solid lightgray">
         <h3 class="card-title">${title}</h3>
-
         <div class="info-box">
         <h3 class="price-title">$${value.price}</h3>
         <h4 class="ratings-text">Rating: ${value.rating.rate}/5 (${value.rating.count})</h4>
-        
         <h6 class="card-text"><a class=" js-modal-button js-modal-button-${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal"">Details</a></h6>
-   
         <h6 class="item-category-text">${this.categoryToUpperCase(value.category)}</h6>
         </div>
       </div>`;
@@ -176,7 +165,6 @@ class Products extends Cart {
 
   pushToCartEventListener() {
     let login = document.querySelector('.place-the-login-name-here');
-    console.log(login);
     if (this.cart.length >= 5) {
       alert('Cart full!');
     } else if (login.innerText === 'Log in!') {
@@ -199,9 +187,8 @@ class Products extends Cart {
       let y = [];
       let cSelect = document.querySelector('.category-select');
       let cValue = cSelect.value;
-      console.log(cValue);
       let x = cValue === 'All products' ? this.products : this.filterByCategory(cValue);
-      console.log(x);
+
       if (sortList.value === 'Highest rating') {
         y = this.sortBy('Highest rating', x);
       } else if (sortList.value === 'Lowest rating') {
@@ -210,7 +197,7 @@ class Products extends Cart {
         y = this.sortBy('Highest price', x);
       } else if (sortList.value === 'Lowest price') {
         y = this.sortBy('Lowest price', x);
-      } 
+      }
       this.renderHTML(y);
     });
   }

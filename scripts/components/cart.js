@@ -44,7 +44,7 @@ class Cart {
 
     const index = parseInt(buttonId.split('-')[2]);
     this.cart.splice((index - 1), 1);
-    console.log(this.cart);
+
     localStorage.setItem('cartItems', JSON.stringify(this.cart));
   }
 
@@ -82,7 +82,6 @@ class Cart {
     const checkoutButton = document.querySelector('.checkout-button');
     checkoutButton.addEventListener('click', () => {
       checkoutButton.innerText = 'Added!';
-      console.log(this.cart);
 
       setTimeout(() => {
         localStorage.removeItem('cartItems');

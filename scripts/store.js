@@ -6,13 +6,9 @@ import {
   loginEL
 } from './components/event-handlers.js';
 
-
 const products = await products_1.fetchProducts('https://fakestoreapi.com/products');
 products_1.products = products;
 let cart = cart_1.cart;
-console.log(cart);
-console.log(products);
-
 products_1.renderHTML(products);
 loginEL();
 products_1.getCategoriesForDropdown();
@@ -22,44 +18,8 @@ cart_1.checkoutEL();
 products_1.sortBy(products);
 products_1.sortEventListener();
 products_1.resetButtonEventListener();
-// eventListeners(products);
 
 
-
-
-// Kanske använder senare
-// function eventListeners(products) {
-
-  // products.forEach((value, index) => {
-  //   const newButton = document.querySelector(`.js-modal-button-${value.id}`);
-  //   newButton.addEventListener('click', () => {
-  //     products_1.renderModalContent(value.id);
-  //   });
-  // });
-
-  // const clearButton = document.querySelector('.clear-button');
-  // clearButton.addEventListener('click', () => {
-  //   products_1.renderHTML(products);
-  // });
-// }
-
-
-
-
-
-
-
-
-
-
-
-// console.log(products);
-// console.log('asdasd')
-
-// renderHTML(products);
-
-
-// preciseSort(products);
 
 
 

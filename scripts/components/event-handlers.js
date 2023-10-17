@@ -7,7 +7,6 @@ function loginEL(namn) {
   const generatedLoginName = document.querySelector('.place-the-login-name-here');
   generatedLoginName.style.fontSize = '0.9em';
   
-  
   loginButton.addEventListener('click',() => {
     const username = loginInput.value;
     console.log(username);
